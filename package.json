@@ -1,0 +1,29 @@
+{
+  "name": "URL_Shortener",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "db:push":"drizzle-kit push",
+    "db:studio":"drizzle-kit studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.29.3",
+  "dependencies": {
+    "@types/express": "~4.17.25",
+    "@types/node": "^26.2.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "1.0.0-rc.4",
+    "express": "~4.22.2",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.21.0",
+    "drizzle-kit": "1.0.0-rc.4",
+    "tsx": "^4.23.12"
+  }
+}
