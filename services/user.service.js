@@ -5,7 +5,11 @@ import { userTable } from '../models/index.js';
 
 export async function CheckExistingUser(email){
     const [existingUser]=await db.select({
-        id:userTable.id
+        id:userTable.id,
+        firstname:userTable.firstname,
+        lastname:userTable.lastname,
+        password:userTable.password,
+        salt:userTable.salt
     }).from(userTable).where(eq(userTable.email,email))
     
    return existingUser;
@@ -17,9 +21,11 @@ export async function CreateUser(email,firstname,lastname,password,salt){
         firstname:firstname,
         lastname:lastname,
         email:email,
-        password:hashedPassword,
+        password:password,
         salt:salt
     }).returning({id:userTable.id})
    
     return CreatedUser;
 }
+
+

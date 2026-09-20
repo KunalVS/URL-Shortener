@@ -1,8 +1,11 @@
 import express from 'express';
+import 'dotenv'
 import db from '../db/index.js'
 import { userTable } from '../models/index.js';
 import {HashPasswordwithsalt} from '../utils/hash.js'
-import { signupPostRequest } from '../validations/requests.validation.js';
+import { signupPostRequest, loginPostRequest } from '../validations/requests.validation.js';
+import { createtoken } from '../utils/token.js';
+
 
 import {CheckExistingUser,CreateUser} from '../services/user.service.js'
 
@@ -38,6 +41,33 @@ router.post('/signup',async(req,res)=>{
 
     
     
+    })
+
+
+    router.post('/login',async(req,res)=>{
+        const validationresult=await loginPostRequest.safeParseAsync(req.body)
+ 
+        if(!validationresult.success){
+            return res.status(400).json({error:"Please enter valid email and password"})
+        }
+         
+        const {email,password}=validationresult.data;
+
+        const user=await CheckExistingUser(email);
+
+        if(!user){
+            return res.status(400).json({error:`User with email ${email} does not exist!!`})
+        }
+
+        const {hashedPassword}=HashPasswordwithsalt(password,user.salt)
+
+        if(hashedPassword!==user.password){
+            return res.status(400).json({error:`Incorrect password`})
+        }
+
+        const token=await createtoken({id:user.id})
+
+        return res.status(200).json({token:token});
     })
 
 
