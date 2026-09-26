@@ -13,3 +13,13 @@ export async function createtoken(payload){
 
    return jwt.sign(validatetoken.data,JWT_SECRET,{expiresIn:'1h'})
 }
+
+
+export function verifyToken(token){
+     try{
+      const payload=jwt.verify(token,JWT_SECRET)
+      return payload;
+     }catch(err){
+      return null;
+     }
+}
