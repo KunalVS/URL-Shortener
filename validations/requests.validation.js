@@ -14,5 +14,12 @@ export const loginPostRequest=z.object({
 
 export const shortenPostRequestBodySchema=z.object({
     url:z.string().url(),
-    code:z.string().optional()
+    code:z.string().optional().min(6)
+})
+
+export const updatecodebodyschema=z.object({
+    code:z.string().min(6)
+})
+export const updateurlbodyschema=z.object({
+    url:z.url().string()
 })

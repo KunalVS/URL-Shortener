@@ -22,7 +22,7 @@ export function ensureAuthenticated(req,res,next){
      const userID =req.user?.id;
 
     if(!userID){
-        return res.status(401).json({error:'you must be logged in to access resource'})
+        return res.status(401).json({error:'you must be logged in to access this resource'})
     }
 
     next();

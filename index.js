@@ -7,6 +7,10 @@ app.use(express.json())
 app.use(authenticationmiddlewarre);
 app.use('/user',userRouter)
 app.use(urlRouter)
+app.use((err , req ,res ,next)=>{
+    console.error(err)
+    res.status(500).json({error:"Something went wrong on our side"})
+})
 
 const PORT=process.env.PORT || 3000;
 
