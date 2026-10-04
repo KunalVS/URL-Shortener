@@ -16,7 +16,11 @@ export function setUnauthorizedHandler(handler) {
 }
 
 function errorMessage(payload, fallback) {
-  if (typeof payload === "string" && payload.trim()) return payload;
+  if (typeof payload === "string" && payload.trim()) {
+    const message = payload.trim();
+    if (/^(?:<!doctype\s+html|<html[\s>])/i.test(message)) return fallback;
+    return message;
+  }
   if (payload && typeof payload === "object") {
     const candidates = [payload.error, payload.message, payload.detail];
     for (const value of candidates) {
@@ -66,7 +70,10 @@ export async function request(path, { method = "GET", body, authenticated = true
       window.sessionStorage.removeItem("shortly-token");
       if (unauthorizedHandler) unauthorizedHandler();
     }
-    throw new ApiError(errorMessage(payload, "Request failed. Please try again."), response.status, payload);
+    const fallback = [502, 503, 504].includes(response.status)
+      ? `The backend is temporarily unavailable (${response.status}). Please try again shortly.`
+      : "Request failed. Please try again.";
+    throw new ApiError(errorMessage(payload, fallback), response.status, payload);
   }
   return payload;
 }
