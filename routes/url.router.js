@@ -31,6 +31,7 @@ router.get('/myurls',ensureAuthenticated,async function(req,res){
     const {id}=req.user;
 
     const myurls=await db.select({
+        id:urlsTable.id,
          shortCode:urlsTable.shortcode,
          targetURL:urlsTable.targetURL
     }).from(urlsTable).where(eq(urlsTable.userid,id))
@@ -90,7 +91,7 @@ router.patch('/updatecode/:id',ensureAuthenticated,async function(req,res){
        .returning({id:urlsTable.id})
 
 
-       if(updated.length===0){
+       if(!updated){
         return res.status(400).json({error:`Couldn't find URL withh ID ${updated.id}`})
        }
 

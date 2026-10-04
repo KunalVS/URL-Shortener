@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #20252f;
+  background: #f7f8fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+}
+
+button, input {
+  font: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.page-width {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(70, 89, 199, 0.28);
+  outline-offset: 2px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: #303744;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid #d8dde6;
+  border-radius: 0.625rem;
+  background: #fff;
+  padding: 0.65rem 0.8rem;
+  color: #20252f;
+  font-size: 0.9rem;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.field::placeholder {
+  color: #9aa2af;
+}
+
+.field:hover {
+  border-color: #b8c0ce;
+}
+
+.field:focus {
+  border-color: #6878d7;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(70, 89, 199, 0.12);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+  padding: 0.58rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+  cursor: pointer;
+}
+
+.button-primary {
+  background: #4659c7;
+  color: #fff;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: #3546ac;
+}
+
+.button-outline {
+  border-color: #d8dde6;
+  background: #fff;
+  color: #303744;
+}
+
+.button-outline:hover:not(:disabled) {
+  border-color: #bbc3d1;
+  background: #fafbfc;
+}
+
+.button-quiet {
+  min-height: 2.4rem;
+  background: transparent;
+  color: #586273;
+}
+
+.button-quiet:hover:not(:disabled) {
+  background: #f1f3f6;
+  color: #20252f;
+}
+
+.button-danger {
+  background: #b93838;
+  color: white;
+}
+
+.button-danger:hover:not(:disabled) {
+  background: #9f2d2d;
+}
+
+.button-compact {
+  min-height: 2rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.surface-section {
+  overflow: hidden;
+  border: 1px solid #e5e8ee;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.section-heading {
+  border-bottom: 1px solid #edf0f4;
+  padding: 1rem 1.25rem;
+}
+
+.small-action {
+  min-height: 2rem;
+  border: 1px solid #e1e5ec;
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 0.35rem 0.55rem;
+  color: #586273;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+
+.small-action:hover:not(:disabled) {
+  border-color: #c4ccda;
+  background: #f8f9fb;
+}
+
+.small-action-danger {
+  color: #a32f36;
+}
+
+.link-text {
+  color: #4659c7;
+}
+
+.link-text:hover {
+  color: #3546ac;
+  text-decoration: underline;
+}
+
+.status-error,
+.status-success,
+.status-info {
+  border-radius: 0.625rem;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.status-error {
+  border: 1px solid #f0caca;
+  background: #fff6f6;
+  color: #992d34;
+}
+
+.status-success {
+  border: 1px solid #c9e8d4;
+  background: #f2fbf5;
+  color: #226b3a;
+}
+
+.status-info {
+  border: 1px solid #d9def8;
+  background: #f5f6ff;
+  color: #38499e;
+}
+
+.dialog-panel {
+  width: min(100% - 2rem, 30rem);
+  max-width: 30rem;
+  border: 1px solid #e5e8ee;
+  border-radius: 1rem;
+  background: white;
+  padding: 0;
+  color: #20252f;
+  box-shadow: 0 24px 80px rgba(24, 31, 54, 0.18);
+}
+
+.dialog-panel::backdrop {
+  background: rgba(28, 35, 50, 0.42);
+  backdrop-filter: blur(2px);
+}
